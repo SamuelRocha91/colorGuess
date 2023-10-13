@@ -11,6 +11,7 @@ function createRgb() {
 function insertColorGuess() {
   const div = document.getElementById('paleta');
   const p = document.getElementById('rgb-color');
+  const answer = document.getElementById('answer');
   p.innerText = createRgb();
   const random = Math.floor(Math.random() * 6);
   for (let i = 0; i < 6; i += 1) {
@@ -23,6 +24,7 @@ function insertColorGuess() {
     }
     div.appendChild(divCircle);
   }
+  answer.innerText = 'Escolha uma cor';
 }
 
 function responseGame() {
@@ -41,7 +43,21 @@ function responseGame() {
   }
 }
 
+function resetGame() {
+  const reset = document.getElementById('reset-game');
+  const div = document.getElementById('paleta');
+  const ball = document.getElementsByClassName('ball');
+
+  reset.addEventListener('click', () => {
+    for (let index = ball.length - 1; index >= 0; index -= 1) {
+      div.removeChild(ball[index]);
+    }
+    insertColorGuess();
+  });
+}
+
 window.onload = () => {
   insertColorGuess();
   responseGame();
+  resetGame();
 };
