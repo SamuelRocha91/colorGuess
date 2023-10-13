@@ -7,6 +7,34 @@ function createRgb() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+function updateScore() {
+  const answer = document.getElementById('answer');
+  const score = document.getElementById('score');
+  if (answer.innerText === 'Acertou!') {
+    const points = Number(score.innerText);
+    score.innerText = points + 3;
+  }
+}
+
+// gera uma resposta ao jogo na conformidade da resposta do usuário
+function responseGame() {
+  const ball = document.getElementsByClassName('ball');
+  const p = document.getElementById('rgb-color');
+  const answer = document.getElementById('answer');
+  for (let i = 0; i < ball.length; i += 1) {
+    ball[i].addEventListener('click', (event) => {
+      event.preventDefault();
+      const backGround = event.target.style.backgroundColor;
+      if (backGround === p.innerText) {
+        answer.innerText = 'Acertou!';
+      } else {
+        answer.innerText = 'Errou! Tente novamente!';
+      }
+      updateScore();
+    });
+  }
+}
+
 // insere paletas de cores na página
 function insertColorGuess() {
   const div = document.getElementById('paleta');
@@ -27,22 +55,7 @@ function insertColorGuess() {
   answer.innerText = 'Escolha uma cor';
 }
 
-function responseGame() {
-  const ball = document.getElementsByClassName('ball');
-  const p = document.getElementById('rgb-color');
-  const answer = document.getElementById('answer');
-  for (let i = 0; i < ball.length; i += 1) {
-    ball[i].addEventListener('click', (event) => {
-      const backGround = event.target.style.backgroundColor;
-      if (backGround === p.innerText) {
-        answer.innerText = 'Acertou!';
-      } else {
-        answer.innerText = 'Errou! Tente novamente!';
-      }
-    });
-  }
-}
-
+// cria lógica de resetar o jogo
 function resetGame() {
   const reset = document.getElementById('reset-game');
   const div = document.getElementById('paleta');
@@ -53,6 +66,8 @@ function resetGame() {
       div.removeChild(ball[index]);
     }
     insertColorGuess();
+    updateScore();
+    responseGame();
   });
 }
 
@@ -60,4 +75,5 @@ window.onload = () => {
   insertColorGuess();
   responseGame();
   resetGame();
+  updateScore();
 };
