@@ -19,4 +19,17 @@ header {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 40px;
+}
+
+#container-rep {
+  display: flex;
+justify-content: center;
+}
+
+#answer {
+  font-size: 20px;
+  display: block;
+  align-items: center;
+  width: max-content;
 }
