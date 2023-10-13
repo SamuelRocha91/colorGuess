@@ -4,7 +4,7 @@ function createRgb() {
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
 
-  return `(${r}, ${g}, ${b})`;
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 // insere rgb num paragrafo
@@ -20,6 +20,7 @@ function insertColorGuess() {
   for (let i = 0; i < 6; i += 1) {
     const divCircle = document.createElement('div');
     divCircle.className = 'ball';
+    divCircle.style.backgroundColor= createRgb();
     div.appendChild(divCircle);
   }
 }

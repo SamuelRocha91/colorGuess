@@ -12,3 +12,11 @@
   height: 58.6%;
   width: 10%;
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
